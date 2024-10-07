@@ -254,11 +254,17 @@ define(function(require) {
 		},
 
 		storageManagerFormatData: function(data) {
-			var activeStorageId = null;
+			var recordingStorageId = null;
+			var voicemailStorageId = null;
 			try {
-				activeStorageId = data.plan.modb.types.call_recording.attachments.handler;
+				recordingStorageId = data.plan.modb.types.call_recording.attachments.handler;
 			} catch(e) {
-				log('Active storage not found');
+				log('Recording storage not found');
+			}
+			try {
+				voicemailStorageId = data.plan.modb.types.mailbox_message.attachments.handler;
+			} catch(e) {
+				log('Voicemail storage not found');
 			}
 			var itemData;
 			var storagesList = [];
@@ -270,11 +276,15 @@ define(function(require) {
 						type: attachments[i].handler,
 						name: attachments[i].name,
 						settings: attachments[i].settings,
-						isActive: false
+						isActiveRecordings: false,
+						isActiveVoicemail: false
 					};
 
-					if(activeStorageId && itemData.id === activeStorageId) {
-						itemData.isActive = true;
+					if(recordingStorageId && itemData.id === activeStorageId) {
+						itemData.isActiveRecordings = true;
+					}
+					if(voicemailStorageId && itemData.id === activeStorageId) {
+						itemData.isActiveVoicemail = true;
 					}
 					storagesList.push(itemData)
 				}
@@ -349,7 +359,8 @@ define(function(require) {
 					})($newStorageItem)
 				}
 			});
-
+			/*
+			Remove "Set Default Button"
 			template.on('click', '.js-set-default-storage', function(e) {
 				e.preventDefault();
 				var uuid = $(this).closest('.js-storage-item').data('uuid');
@@ -361,6 +372,7 @@ define(function(require) {
 					self.storageManagerSetDefaultStorage(uuid);
 				}
 			});
+			 */
 		},
 
 		storageManagerShowNewItemPanel: function(){
@@ -405,10 +417,12 @@ define(function(require) {
 				var $tab = $(this).closest('.js-tab-content-item');
 				var $form = $tab.find('.js-storage-settings-form');
 				var formData = monster.ui.getFormData($form[0]);
-				var isNeedSetDefault = $tab.find('input[name="set_default"]').is(':checked');
+				var isNeedSetRecordings = $tab.find('input[name="set_recordings"]').is(':checked');
+				var isNeedSetVoicemail = $tab.find('input[name="set_voicemail"]').is(':checked');
 				var typeKeyword = $tab.data('type');
 				var newUuid = self.storageManagerGenerateUUID();
-				delete formData['set_default'];
+				delete formData['set_recordings'];
+				delete formData['set_voicemail'];
 				var storageData = self.storageManagerMakeConfig(typeKeyword, formData, newUuid);
 
 				self.storageManagerPatchStorage(storageData, function(){

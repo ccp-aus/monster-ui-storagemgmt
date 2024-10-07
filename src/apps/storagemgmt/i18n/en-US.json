@@ -15,7 +15,8 @@
 			"saveBtnText": "Save Changes",
 			"cancelBtnText": "Cancel",
 			"successUpdate": "Your Storage Settings were successfully updated!",
-			"setDefaultLabel": "Set default"
+			"setRecordings": "Use for Recordings",
+			"setVoicemail": "Use for Voice Mail"
 		},
 		"newItem": {
 			"saveNewItemText": "Create",

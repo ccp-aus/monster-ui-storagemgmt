@@ -3,6 +3,18 @@
 		<div class="span12">
 			<form class="form-horizontal js-storage-settings-form">
 				{{{ formElements }}}
+				<label class="control-group">
+					<span class="control-label">{{ @root.i18n.storagemgmt.itemSettings.setRecordings }}</span>
+					<div class="controls">
+						<input type="checkbox" value="" name="set_recordings" />
+					</div>
+				</label>
+				<label class="control-group">
+					<span class="control-label">{{ @root.i18n.storagemgmt.itemSettings.setVoicemail }}</span>
+					<div class="controls">
+						<input type="checkbox" value="" name="set_voicemail" {{#if settings.secret }}checked{{/if}} />
+					</div>
+				</label>
 				<div class="buttons-wrapper clearfix">
 					<button type="submit" class="btn btn-primary js-save" >
 						{{ @root.i18n.storagemgmt.itemSettings.saveBtnText }}

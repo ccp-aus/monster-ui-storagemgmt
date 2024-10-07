@@ -18,9 +18,15 @@
 							<form class="form-horizontal js-storage-settings-form">
 								{{{ formElements }}}
 								<label class="control-group">
-									<span class="control-label">{{ @root.i18n.storagemgmt.itemSettings.setDefaultLabel }}</span>
+									<span class="control-label">{{ @root.i18n.storagemgmt.itemSettings.setRecordings }}</span>
 									<div class="controls">
-										<input type="checkbox" checked="checked" value="" name="set_default" />
+										<input type="checkbox" value="" name="set_recordings" />
+									</div>
+								</label>
+								<label class="control-group">
+									<span class="control-label">{{ @root.i18n.storagemgmt.itemSettings.setVoicemail }}</span>
+									<div class="controls">
+										<input type="checkbox" value="" name="set_voicemail" />
 									</div>
 								</label>
 								<div class="buttons-wrapper clearfix">
@@ -40,5 +46,3 @@
 		</div>
 	</div>
 </div>
-
-
