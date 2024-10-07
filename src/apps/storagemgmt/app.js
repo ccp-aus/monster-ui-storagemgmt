@@ -470,11 +470,6 @@ define(function(require) {
 								attachments: {
 									handler: uuid
 								}
-							},
-							mailbox_message: {
-								attachments: {
-									handler: uuid
-								}
 							}
 						}
 					},

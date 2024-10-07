@@ -15,7 +15,7 @@
 			"saveBtnText": "Save Changes",
 			"cancelBtnText": "Cancel",
 			"successUpdate": "Your Storage Settings were successfully updated!",
-			"setDefaultLabel": "Set default"
+			"setDefaultLabel": "Use for Recordings"
 		},
 		"newItem": {
 			"saveNewItemText": "Create",
